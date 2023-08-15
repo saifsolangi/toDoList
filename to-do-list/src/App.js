@@ -4,23 +4,18 @@ function App() {
   const [toDoList, setToDoList] = useState([])
   const [newTask, setNewTask] = useState("")
 
-  const handleChange = (event) => {
-    if (event.target.value === 0) {
-      return
 
-    } else
-      return setNewTask(event.target.value)
+
+  const handleChange = (event) => {
+    setNewTask(event.target.value)
+    console.log(newTask)
   }
 
   const addTask = () => {
-
     const task = {
       id: toDoList.length === 0 ? 1 : toDoList[toDoList.length - 1].id + 1,
       taskName: newTask
     }
-
-    console.log(task)
-
     setToDoList([...toDoList, task])
   }
 
@@ -44,6 +39,7 @@ function App() {
         <h1 className='font-bold my-5'>{toDoList.map((task) => {
           return (
             <div className='flex gap-5 justify-between items-center my-3'>
+              <input type='checkbox' />
               <h1>{task.taskName}</h1>
               <button onClick={() => deleteTask(task.id)} className=' bg-red-600 px-2 py-1 rounded-md font-bold text-white hover:bg-red-500'>Delete</button>
             </div>
